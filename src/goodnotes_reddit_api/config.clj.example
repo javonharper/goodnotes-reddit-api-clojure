@@ -1,0 +1,4 @@
+(ns goodnotes-reddit-api.config ) 
+
+(def username "...")
+(def password "...")

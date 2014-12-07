@@ -4,6 +4,10 @@
             [reddit :refer :all]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
+(require 'goodnotes-reddit-api.config)
+(refer 'goodnotes-reddit-api.config)
+
+(login! username password)
 (set-user-agent! "Goodnotes Music Crawler")
 
 (defn get-subreddit-artists
