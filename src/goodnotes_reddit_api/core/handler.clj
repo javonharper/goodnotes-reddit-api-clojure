@@ -1,11 +1,9 @@
 (ns goodnotes-reddit-api.core.handler
-  (:require [compojure.core :refer :all]
+  (:require [goodnotes-reddit-api.config :refer :all]
+            [compojure.core :refer :all]
             [compojure.route :as route]
             [reddit :refer :all]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
-
-(require 'goodnotes-reddit-api.config)
-(refer 'goodnotes-reddit-api.config)
 
 (login! username password)
 (set-user-agent! "Goodnotes Music Crawler")
