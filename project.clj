@@ -5,6 +5,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.2.0"]
                  [mynx "2.0.0"]
+                 [org.clojure/data.json "0.2.5"]
                  [ring/ring-defaults "0.1.2"]]
   :plugins [[lein-ring "0.8.13"]]
   :ring {:handler goodnotes-reddit-api.core.handler/app}
