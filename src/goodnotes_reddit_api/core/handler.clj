@@ -9,18 +9,40 @@
 (login! username password)
 (set-user-agent! "Goodnotes-Reddit API")
 
+(defn extract-attributes
+  [post-title]
+
+  (def matches (re-find #"(.+) - .+" post-title))
+
+  {
+    :artist (second matches)})
+
 (defn format-post
   [post]
+
   (def p (into {} post))
-  {
-   :title (:title p) 
-   :reddit-url (:permalink p)
-  }
-)
+  (def attrs (extract-attributes (:title p)))
+  
+  (if (= (:artist attrs) nil)
+    {
+      :title (:title p) 
+      :reddit-url (:permalink p)
+      :valid false
+    }
+    {
+      :title (:title p) 
+      :artist (:artist attrs)
+      :reddit-url (:permalink p)
+      :goodnotes-url (str "http://www.goodnot.es/listen/" (clojure.string/replace 
+                                                            (:artist attrs) #" " "+"))
+      :valid true}))
+
 
 (defn get-subreddit-artists
   [subreddit-name]
-  ;; Here goes some hilariously imperative  and ugly code... I regret nothing yet.
+
+  ;; Here goes some hilariously imperative and ugly code... I regret nothing yet.
+
   (def subreddit-obj (subreddit subreddit-name))
   (def subreddit-posts (items subreddit-obj))
   (def top-10-subreddit-posts (take 10 subreddit-posts))
