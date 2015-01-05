@@ -37,17 +37,23 @@
                                                             (:artist attrs) #" " "+"))
       :valid true}))
 
+(defn valid-post?
+  [post]
+  (= (:valid post) true))
 
 (defn get-subreddit-artists
   [subreddit-name]
 
   ;; Here goes some hilariously imperative and ugly code... I regret nothing yet.
 
-  (def subreddit-obj (subreddit subreddit-name))
-  (def subreddit-posts (items subreddit-obj))
-  (def top-10-subreddit-posts (take 10 subreddit-posts))
-  (def formatted-posts (map format-post top-10-subreddit-posts))
-  (def serialized-posts (json/write-str formatted-posts))
+  (def subreddit-home (subreddit subreddit-name))
+  (def subreddit-posts (items subreddit-home))
+  (def valid-posts 
+    (take 10 
+      (filter valid-post? 
+        (map format-post subreddit-posts))))
+
+  (def serialized-posts (json/write-str valid-posts))
 
   {:status 200
    :headers {"Content-Type" "text/json; charset=utf-8"}
