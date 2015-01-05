@@ -37,6 +37,8 @@
                                                             (:artist attrs) #" " "+"))
       :goodnotes-search-url (str "http://www.goodnot.es/search?query=" (clojure.string/replace 
                                                             (:artist attrs) #" " "+"))
+      :lastfm-search-url (str "http://www.last.fm/search?q=" (clojure.string/replace 
+                                                            (:artist attrs) #" " "+"))
       :valid true}))
 
 (defn valid-post?
