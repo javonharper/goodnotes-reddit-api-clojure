@@ -66,7 +66,7 @@
 (defroutes app-routes
   (GET "/" [] "<h1>Hello, visitor! Welcome to the Goodnotes-Reddit artist API!</h1>")
   (GET "/r/:subreddit.json" [subreddit] (get-subreddit-artists subreddit))
-  (route/not-found "Not Found"))
+  (route/not-found "Not Found!"))
 
 (def app
   (wrap-defaults app-routes site-defaults))
