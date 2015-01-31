@@ -9,8 +9,10 @@
 (login! username password)
 (set-user-agent! "Goodnotes-Reddit API")
 
-(defn extract-attributes
+(defn extract-artist
   [post-title]
+
+  ;; Take a Reddit music post title and returns a map with the artist.
 
   (def matches (re-find #"(.+) - .+" post-title))
 
@@ -20,8 +22,10 @@
 (defn format-post
   [post]
 
+  ;; Given a post, create a map with the bits that are important to goodnotes
+
   (def p (into {} post))
-  (def attrs (extract-attributes (:title p)))
+  (def attrs (extract-artist (:title p)))
   
   (if (= (:artist attrs) nil)
     {
@@ -41,9 +45,27 @@
                                                             (:artist attrs) #" " "+"))
       :valid true}))
 
+(defn valid-title?
+  [title]
+
+  ;; Returns true if the title is a valid music title
+
+  (def valid? (all (fn 
+                     [omitted-title]
+                     (not (.contains #omitted-title title)) omitted-titles))
+           )))
+  (println valid?)
+  valid?)
+  
+
 (defn valid-post?
   [post]
-  (= (:valid post) true))
+
+  ;; Returns true if the title is valid and post could be formatted
+
+  (if (valid-title? (:title post))
+    (= (:valid post) true)
+    false))
 
 (defn get-subreddit-artists
   [subreddit-name]
