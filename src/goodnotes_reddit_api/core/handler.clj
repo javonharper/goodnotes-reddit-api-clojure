@@ -48,12 +48,13 @@
 (defn valid-title?
   [title]
 
-  ;; Returns true if the title is a valid music title
+  ;; Returns true if the title is a valid music title and doesn't contain omitted phrases
 
-  (def valid? (all (fn 
+
+  (def valid? (every? (fn 
                      [omitted-title]
-                     (not (.contains #omitted-title title)) omitted-titles))
-           )))
+                     ; (println (str omitted-title "   .contains? -> " title))
+                     (not (.contains title omitted-title))) omitted-titles))
   (println valid?)
   valid?)
   
