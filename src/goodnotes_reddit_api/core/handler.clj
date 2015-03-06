@@ -53,9 +53,7 @@
 
   (def valid? (every? (fn 
                      [omitted-title]
-                     ; (println (str omitted-title "   .contains? -> " title))
                      (not (.contains title omitted-title))) omitted-titles))
-  (println valid?)
   valid?)
   
 
