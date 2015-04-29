@@ -14,7 +14,7 @@
 
   ;; Take a Reddit music post title and returns a map with the artist.
 
-  (def matches (re-find #"(.+) - .+" post-title))
+  (def matches (re-find #"(.+?) -?- .+" post-title))
 
   {
     :artist (second matches)})
@@ -37,9 +37,9 @@
       :title (:title p) 
       :artist (:artist attrs)
       :reddit-url (:permalink p)
-      :goodnotes-url (str "http://www.goodnot.es/listen/" (clojure.string/replace 
+      :goodnotes-url (str "http://www.goodnotes.io/listen/" (clojure.string/replace 
                                                             (:artist attrs) #" " "+"))
-      :goodnotes-search-url (str "http://www.goodnot.es/search?query=" (clojure.string/replace 
+      :goodnotes-search-url (str "http://www.goodnotes.io/search?query=" (clojure.string/replace 
                                                             (:artist attrs) #" " "+"))
       :lastfm-search-url (str "http://www.last.fm/search?q=" (clojure.string/replace 
                                                             (:artist attrs) #" " "+"))
