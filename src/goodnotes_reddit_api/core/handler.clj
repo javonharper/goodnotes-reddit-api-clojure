@@ -53,7 +53,7 @@
 
   (def valid? (every? (fn 
                      [omitted-title]
-                     (not (.contains title omitted-title))) omitted-titles))
+                     (not (.contains (clojure.string/lower-case title) (clojure.string/lower-case omitted-title)))) omitted-titles))
   valid?)
   
 
