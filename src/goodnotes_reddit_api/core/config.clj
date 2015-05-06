@@ -1,7 +1,9 @@
-(ns goodnotes-reddit-api.config ) 
+(ns goodnotes-reddit-api.core.config
+  (require [environ.core :refer [env]]))
+ 
+(def username (env :goodnotes-reddit-username))
+(def password (env :goodnotes-reddit-password))
 
-(def username "...")
-(def password "...")
 
 (def omitted-titles
   '("week"
@@ -16,6 +18,9 @@
      "fresh"
      "my"
      "you"
+     "I'm"
+     "Premier"
+     "discography"
      "live"
      "thursday"
      "compilation"

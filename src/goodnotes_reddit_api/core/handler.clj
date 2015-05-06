@@ -1,5 +1,5 @@
 (ns goodnotes-reddit-api.core.handler
-  (:require [goodnotes-reddit-api.config :refer :all]
+  (:require [goodnotes-reddit-api.core.config :refer :all]
             [compojure.core :refer :all]
             [compojure.route :as route]
             [reddit :refer :all]
@@ -49,7 +49,6 @@
   [title]
 
   ;; Returns true if the title is a valid music title and doesn't contain omitted phrases
-
 
   (def valid? (every? (fn 
                      [omitted-title]
