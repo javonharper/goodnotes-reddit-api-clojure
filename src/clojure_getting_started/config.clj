@@ -1,6 +1,6 @@
-(ns goodnotes-reddit-api.core.config
+(ns clojure-getting-started.config
   (require [environ.core :refer [env]]))
- 
+
 (def username (env :goodnotes-reddit-username))
 (def password (env :goodnotes-reddit-password))
 
