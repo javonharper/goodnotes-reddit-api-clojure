@@ -10,8 +10,8 @@
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]))
 
-(login! username password)
-(set-user-agent! "Goodnotes-Reddit API")
+; (login! username password)
+; (set-user-agent! "Goodnotes-Reddit API")
 
 (defn get-subreddit-artists
   [subreddit-name]
@@ -31,16 +31,11 @@
    :headers {"Content-Type" "text/json; charset=utf-8"}
    :body serialized-posts })
 
-(defn splash []
-  {:status 200
-   :headers {"Content-Type" "text/plain"}
-   :body (pr-str ["Hello" :from 'Heroku])})
-
 (defn request-id-filter [request])
 
 (defroutes app
   (GET "/" [] "<h1>Hello, visitor! Welcome to the Goodnotes-Reddit artist API!</h1>")
-  (GET "/r/:subreddit.json" [subreddit] (get-subreddit-artists subreddit))
+  ;(GET "/r/:subreddit.json" [subreddit] (get-subreddit-artists subreddit))
   (route/not-found "Not Found!"))
 
 (defn -main [& [port]]
