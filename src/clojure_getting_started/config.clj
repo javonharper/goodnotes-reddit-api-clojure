@@ -19,6 +19,7 @@
      "my"
      "you"
      "I'm"
+     "&"
      "Premier"
      "discography"
      "live"
